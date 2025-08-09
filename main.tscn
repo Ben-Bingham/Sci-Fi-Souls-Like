@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cst5hm322x6k3"]
+[gd_scene load_steps=6 format=3 uid="uid://cst5hm322x6k3"]
 
 [ext_resource type="Script" uid="uid://bw2bsq628484n" path="res://player.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://hn8dhjxjs7gl" path="res://icon.svg" id="2_0xm2m"]
@@ -7,19 +7,32 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(128, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(38, 38)
+
 [node name="Main" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(611, 315)
 script = ExtResource("1_ig7tw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="PlayerCollider" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_0xm2m")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
 texture = ExtResource("2_0xm2m")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Weapon" type="Area2D" parent="Player"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Weapon"]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Weapon"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_0xm2m")
 
 [node name="TestBox" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(248, 154)
